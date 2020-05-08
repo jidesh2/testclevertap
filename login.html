@@ -12,7 +12,15 @@
  
 
     <script type="text/javascript">
-  navigator.serviceWorker.register('clevertap_sw.js', {scope: './testclevertap/'});
+  
+  navigator.serviceWorker.register('/testclevertap/clevertap_sw.js', { scope: '/testclevertap/' })
+        .then(function (registration)
+        {
+          console.log('Service worker registered successfully');
+        }).catch(function (e)
+        {
+          console.error('Error during service worker registration:', e);
+        });
      var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
  // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
 clevertap.account.push({"id": "R74-547-885Z"});

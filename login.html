@@ -39,8 +39,8 @@ clevertap.event.push("Logged In");
     "okButtonText":'Sign me up!',
     "rejectButtonText":'No thanks',
     "okButtonColor":'#f28046'});
-       if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('/testclevertap/clevertap_sw.js', {scope: '/testclevertap/'})
+       navigator.serviceWorker.register('/testclevertap/clevertap_sw.js', {scope: '/'})
+       
   }
 </script>
 

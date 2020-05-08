@@ -12,7 +12,7 @@
  
 
     <script type="text/javascript">
-
+  navigator.serviceWorker.register('clevertap_sw.js', {scope: './testclevertap/'});
      var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
  // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
 clevertap.account.push({"id": "R74-547-885Z"});
@@ -39,7 +39,7 @@ clevertap.event.push("Logged In");
     "okButtonText":'Sign me up!',
     "rejectButtonText":'No thanks',
     "okButtonColor":'#f28046'});
-       navigator.serviceWorker.register('/testclevertap/clevertap_sw.js', {scope: '/'})
+  
        
   }
 </script>

@@ -36,9 +36,9 @@ clevertap.privacy.push({useIP: true}); //set the flag to true, if the user agree
   })();
 
     function signin(){
-      if (window.clevertap) {
+      if (window.CleverTap) {
   // Call Android interface             
- clevertap.pushEvent("Logged In with webview");
+CleverTap.pushEvent("Logged In with webview");
             
 }
 clevertap.event.push("Logged In");

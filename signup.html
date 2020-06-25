@@ -8,21 +8,7 @@
   <link rel="stylesheet" type="text/css" href="signup_style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-<script type="text/javascript">
-     var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
- // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
-clevertap.account.push({"id": "R74-547-885Z"});
-clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
-clevertap.privacy.push({useIP: true}); //set the flag to true, if the user agrees to share their IP data
- (function () {
-     var wzrk = document.createElement('script');
-     wzrk.type = 'text/javascript';
-     wzrk.async = true;
-     wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
-     var s = document.getElementsByTagName('script')[0];
-     s.parentNode.insertBefore(wzrk, s);
-  })();
-</script>
+
 
 
 
@@ -32,16 +18,13 @@ clevertap.privacy.push({useIP: true}); //set the flag to true, if the user agree
   function signup(){
       var username=document.getElementById('username').value;
       var pass=document.getElementById('pass').value;
-    
-    
-clevertap.onUserLogin.push({
- "Site": {
-   "Name": document.getElementById('name').value, // User's name
-   "Email": document.getElementById('email').value,
-   "Username":document.getElementById('username').value
- }
-});
-clevertap.event.push("Sign Up");
+      var name=document.getElementById('name').value;
+    var props = {Name: name, username: username,pass: pass};
+    if (window.CleverTap) {
+  // Call Android interface             
+ CleverTap.pushEvent("Signed_up_fromWebview");
+      CleverTap..onUserLogin(JSON.stringify(props));
+}
 
       }
 

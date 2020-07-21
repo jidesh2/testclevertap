@@ -30,7 +30,7 @@
 
     function signin(){
       
-analytics.identify(' {{user.id}} ', {
+analytics.identify(document.getElementById('username').value, {
   name: document.getElementById('username').value
  
 });

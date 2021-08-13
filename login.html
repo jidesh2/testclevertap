@@ -13,7 +13,7 @@
 
     <script type="text/javascript">
   
-  navigator.serviceWorker.register('/testclevertap/clevertap_sw.js', { scope: '/testclevertap/' })
+  navigator.serviceWorker.register('./testclevertap/clevertap_sw.js', { scope: '/' })
         .then(function (registration)
         {
           console.log('Service worker registered successfully');
@@ -55,11 +55,14 @@ clevertap.event.push("Logged In");
 
       clevertap.notifications.push({
     "titleText":'Would you like to receive Push Notifications?',
-    "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
-	      "serviceWorkerPath”:'./clevertap_sw.js',
+    "bodyText":'We promise to only send you relevant content and give you updates on your transactions',     
     "okButtonText":'Sign me up!',
     "rejectButtonText":'No thanks',
-    "okButtonColor":'#f28046'});
+    "okButtonColor":'#f28046',
+    "serviceWorkerPath”:"./testclevertap/clevertap_sw.js",
+      
+      
+      });
   
        
   

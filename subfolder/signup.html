@@ -29,7 +29,7 @@ clevertap.privacy.push({useIP: false}); //set the flag to true, if the user agre
 
   <script type="text/javascript">
 
-  function signupnew(){
+    function signupnew(){
     
     
       var username=document.getElementById('username').value;
@@ -38,18 +38,9 @@ clevertap.privacy.push({useIP: false}); //set the flag to true, if the user agre
     var props = {"Name": name, "Username": username,"Password": pass};
   
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-        navigator.serviceWorker.register('./sw.js', {scope: './subfolder/'});
-        this.console.log('registering service worker');
-    });
-}
-navigator.serviceWorker.ready.then(
-    registration => {
-        var subscribeParams = {
-            userVisibleOnly: true
-        };
-        console.log('Service Worker Teady');
-      clevertap.notifications.push({
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+	        clevertap.notifications.push({
     "titleText":"Would you like to receive Push Notifications?",
     "bodyText":"We promise to only send you relevant content and give you updates on your transactions",
     "okButtonText":"Sign me up!",
@@ -58,8 +49,17 @@ navigator.serviceWorker.ready.then(
     "askAgainTimeInSeconds":5,
     "serviceWorkerPath": "./sw.js" // path to your custom service worker file
   });
-});
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
 }
+
+}
+
     
 
       

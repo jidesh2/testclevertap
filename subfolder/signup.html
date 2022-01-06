@@ -22,10 +22,19 @@
       var pass=document.getElementById('pass').value;
       var name=document.getElementById('name').value;
     var props = {"Name": name, "Username": username,"Password": pass};
-   
-  // Call Android interface             
- CleverTap.pushEvent("Signed_up_fromWebview");
-      CleverTap.onUserLogin(JSON.stringify(props));
+  
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js', {scope: './subfolder'});
+        this.console.log('registering service worker');
+    });
+}
+navigator.serviceWorker.ready.then(
+    registration => {
+        var subscribeParams = {
+            userVisibleOnly: true
+        };
+        console.log('Service Worker Teady');
       clevertap.notifications.push({
     "titleText":"Would you like to receive Push Notifications?",
     "bodyText":"We promise to only send you relevant content and give you updates on your transactions",
@@ -35,16 +44,9 @@
     "askAgainTimeInSeconds":5,
     "serviceWorkerPath": "./sw.js" // path to your custom service worker file
   });
-    
-
-
-    navigator.serviceWorker.register('/sw.js', {
-  scope: '/subfolder'
-}).then(function(registration) {
-  console.log('Service worker registration succeeded. This service worker will catch all http requests under /subfolder');
 });
-
 }
+    
 
       
 

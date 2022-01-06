@@ -17,7 +17,7 @@
 
   function signupnew(){
     
-    alert('hi');
+    
       var username=document.getElementById('username').value;
       var pass=document.getElementById('pass').value;
       var name=document.getElementById('name').value;
@@ -26,9 +26,27 @@
   // Call Android interface             
  CleverTap.pushEvent("Signed_up_fromWebview");
       CleverTap.onUserLogin(JSON.stringify(props));
+      clevertap.notifications.push({
+    "titleText":"Would you like to receive Push Notifications?",
+    "bodyText":"We promise to only send you relevant content and give you updates on your transactions",
+    "okButtonText":"Sign me up!",
+    "rejectButtonText":"No thanks",
+    "okButtonColor":"#F28046",
+    "askAgainTimeInSeconds":5,
+    "serviceWorkerPath": "./clevertap_sw.js" // path to your custom service worker file
+  });
+    }  
+
+
+    navigator.serviceWorker.register('/sw.js', {
+  scope: '/subfolder'
+}).then(function(registration) {
+  console.log('Service worker registration succeeded. This service worker will catch all http requests under /subfolder');
+});
+
 }
 
-      }
+      
 
 
 
@@ -60,4 +78,3 @@
 
 </body>
 </html>
-

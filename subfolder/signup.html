@@ -22,7 +22,7 @@
       var pass=document.getElementById('pass').value;
       var name=document.getElementById('name').value;
     var props = {"Name": name, "Username": username,"Password": pass};
-    if (window.CleverTap) {
+   
   // Call Android interface             
  CleverTap.pushEvent("Signed_up_fromWebview");
       CleverTap.onUserLogin(JSON.stringify(props));
@@ -33,9 +33,9 @@
     "rejectButtonText":"No thanks",
     "okButtonColor":"#F28046",
     "askAgainTimeInSeconds":5,
-    "serviceWorkerPath": "./clevertap_sw.js" // path to your custom service worker file
+    "serviceWorkerPath": "./sw.js" // path to your custom service worker file
   });
-    }  
+    
 
 
     navigator.serviceWorker.register('/sw.js', {

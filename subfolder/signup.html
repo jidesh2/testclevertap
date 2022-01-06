@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+<html>
+<head>
+  <title>Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="signup_style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+
+
+
+
+
+  <script type="text/javascript">
+
+  function signupnew(){
+    
+    
+      var username=document.getElementById('username').value;
+      var pass=document.getElementById('pass').value;
+      var name=document.getElementById('name').value;
+    var props = {"Name": name, "Username": username,"Password": pass};
+    if (window.CleverTap) {
+  // Call Android interface             
+ CleverTap.pushEvent("Signed_up_fromWebview");
+      CleverTap.onUserLogin(JSON.stringify(props));
+      clevertap.notifications.push({
+    "titleText":"Would you like to receive Push Notifications?",
+    "bodyText":"We promise to only send you relevant content and give you updates on your transactions",
+    "okButtonText":"Sign me up!",
+    "rejectButtonText":"No thanks",
+    "okButtonColor":"#F28046",
+    "askAgainTimeInSeconds":5,
+    "serviceWorkerPath": "./clevertap_sw.js" // path to your custom service worker file
+  });
+    }  
+
+
+    navigator.serviceWorker.register('/sw.js', {
+  scope: '/subfolder'
+}).then(function(registration) {
+  console.log('Service worker registration succeeded. This service worker will catch all http requests under /subfolder');
+});
+
+}
+
+      
+
+
+
+  
+</script>
+
+</head>
+
+<body class="body">
+
+
+  
+<div class="login-page">
+  <div class="form">
+
+    <form>
+      <input type="text" placeholder="full name"id="name"/>
+      <input type="text" placeholder="email address"id="email"/>
+      <input type="text" placeholder="pick a username" id="username"/>
+      <input type="password" placeholder="set a password"id="pass"/>
+      
+    </form>
+
+    <form class="login-form">
+      <button type="button" onclick="signupnew()">SIGN UP</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

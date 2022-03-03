@@ -28,21 +28,7 @@ clevertap.privacy.push({useIP: true}); //set the flag to true, if the user agree
      s.parentNode.insertBefore(wzrk, s);
   })();
 
-    function signin(){
-
-clevertap.event.push("Logged In");
-	clevertap.onUserLogin.push({
- "Site": {
-   "Name": "Jack Montana tester ",            // String
-   "Identity": 4356789,              // String or number
-   "Phone": "+14155551234",
- "MSG-whatsapp": true,
-"Custom_2":"jidesh tester",	 // Phone (with the country code)
-   "Gender": "M",                     // Can be either M or F
-   "DOB": new Date()                 // Date of Birth. Date objec
-   
- }
-});    
+    function signin(){  
 clevertap.notifications.push({
     "titleText":"Would you like to receive Push Notifications?",
     "bodyText":"We promise to only send you relevant content and give you updates on your transactions",

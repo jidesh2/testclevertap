@@ -36,15 +36,15 @@ function getStartToken(){
 }
 function RequestPermission(){
 
-  messaging.getToken({vapidKey: "BK6C_NAb7vAh3oXR_A6IexStk4UWO5QZeCgx6X5JYatXxlOzeBTxpIKn2P6mEVQXXLOnBDY27cpXl1nbqq2DDyk"});
-  if ('serviceWorker' in navigator) {
-navigator.serviceWorker.register('./clevertap_sw.js')
-  .then(function(registration) {
-    console.log('Registration successful, scope is:', registration.scope);
-  }).catch(function(err) {
-    console.log('Service worker registration failed, error:', err);
-  });
-}
+//   messaging.getToken({vapidKey: "BK6C_NAb7vAh3oXR_A6IexStk4UWO5QZeCgx6X5JYatXxlOzeBTxpIKn2P6mEVQXXLOnBDY27cpXl1nbqq2DDyk"});
+//   if ('serviceWorker' in navigator) {
+// navigator.serviceWorker.register('./clevertap_sw.js')
+//   .then(function(registration) {
+//     console.log('Registration successful, scope is:', registration.scope);
+//   }).catch(function(err) {
+//     console.log('Service worker registration failed, error:', err);
+//   });
+// }
 }
 
 // clevertap.notifications.push({

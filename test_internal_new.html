@@ -2,7 +2,38 @@
     <head>
 <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-messaging.js"></script>
+<script type="text/javascript">
+  if(getCookie("webpush"))
+  {
 
+    var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
+ // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+clevertap.account.push({"id": "R74-547-885Z"});
+clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
+clevertap.privacy.push({useIP: true}); //set the flag to true, if the user agrees to share their IP data
+ (function () {
+     var wzrk = document.createElement('script');
+     wzrk.type = 'text/javascript';
+     wzrk.async = true;
+     wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+     var s = document.getElementsByTagName('script')[0];
+     s.parentNode.insertBefore(wzrk, s);
+  })();
+
+    
+clevertap.notifications.push({
+    "titleText":"Would you like to receive Push Notifications?",
+    "bodyText":"We promise to only send you relevant content and give you updates on your transactions",
+    "okButtonText":"Sign me up!",
+    "rejectButtonText":"No thanks",
+    "okButtonColor":"#F28046",
+    "askAgainTimeInSeconds":5,
+    "serviceWorkerPath": "./clevertap_sw.js" // path to your custom service worker file
+  });
+  }
+
+
+</script>
 <script>
   const firebaseConfig = {
     apiKey: "AIzaSyBUXtmaWZuJuvRHX0tNzd68R1ujj6tV1lo",
@@ -28,41 +59,45 @@ function getStartToken(){
 
   // request user grant to show notification
   return Notification.requestPermission(function(result) {
-    return result;
+    console.log(result);
+    if(result=="granted")
+    {
+   setCookie("webpush","yes",5000);
+
+    }
   });
  navigator.serviceWorker.register("./clevertap_sw.js").then(function(swRegistration) {
     //you can do something with the service wrker registration (swRegistration)
   });
 }
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 navigator.serviceWorker.getRegistration()
 .then(function(registration) {
     try {
         if (registration.pushManager) {
-         var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
- // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
-clevertap.account.push({"id": "R74-547-885Z"});
-clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
-clevertap.privacy.push({useIP: true}); //set the flag to true, if the user agrees to share their IP data
- (function () {
-     var wzrk = document.createElement('script');
-     wzrk.type = 'text/javascript';
-     wzrk.async = true;
-     wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
-     var s = document.getElementsByTagName('script')[0];
-     s.parentNode.insertBefore(wzrk, s);
-  })();
-
-    function signin(){  
-clevertap.notifications.push({
-    "titleText":"Would you like to receive Push Notifications?",
-    "bodyText":"We promise to only send you relevant content and give you updates on your transactions",
-    "okButtonText":"Sign me up!",
-    "rejectButtonText":"No thanks",
-    "okButtonColor":"#F28046",
-    "askAgainTimeInSeconds":5,
-    "serviceWorkerPath": "./clevertap_sw.js" // path to your custom service worker file
-  });
-    }  
+         
+     
     console.log("yes");
   } else {
     console.log("no");

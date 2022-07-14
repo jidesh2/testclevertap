@@ -16,6 +16,7 @@
 
   firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
+messaging.usePublicVapidKey("BK6C_NAb7vAh3oXR_A6IexStk4UWO5QZeCgx6X5JYatXxlOzeBTxpIKn2P6mEVQXXLOnBDY27cpXl1nbqq2DDyk");
 //Custom function made to run firebase service 
 getStartToken();
 //This code recieve message from server /your app and print message to console if same tab is opened as of project in browser 
@@ -26,7 +27,7 @@ function getStartToken(){
   
 messaging.getToken().then((currentToken) => {
 if (currentToken) {
-
+console.log("have Permission");
 } 
 else {
 // Show permission request.
@@ -38,10 +39,35 @@ RequestPermission();
 });
 }
 function RequestPermission(){
+
 messaging.RequestPermission().then(function(permission){
 if (permission === 'granted') {
 console.log("have Permission");
-//calls method again and to sent token to server
+    var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
+ // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+clevertap.account.push({"id": "R74-547-885Z"});
+clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
+clevertap.privacy.push({useIP: true}); //set the flag to true, if the user agrees to share their IP data
+ (function () {
+     var wzrk = document.createElement('script');
+     wzrk.type = 'text/javascript';
+     wzrk.async = true;
+     wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+     var s = document.getElementsByTagName('script')[0];
+     s.parentNode.insertBefore(wzrk, s);
+  })();
+
+    function signin(){  
+clevertap.notifications.push({
+    "titleText":"Would you like to receive Push Notifications?",
+    "bodyText":"We promise to only send you relevant content and give you updates on your transactions",
+    "okButtonText":"Sign me up!",
+    "rejectButtonText":"No thanks",
+    "okButtonColor":"#F28046",
+    "askAgainTimeInSeconds":5,
+    "serviceWorkerPath": "./clevertap_sw.js" // path to your custom service worker file
+  });
+    }
 getStartToken();
  }else{console.log("Permission Denied");}
 })

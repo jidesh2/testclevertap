@@ -1,0 +1,81 @@
+<html>
+    <head>
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-messaging.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBUXtmaWZuJuvRHX0tNzd68R1ujj6tV1lo",
+    authDomain: "testct-70799.firebaseapp.com",
+    databaseURL: "https://testct-70799.firebaseio.com",
+    projectId: "testct-70799",
+    storageBucket: "testct-70799.appspot.com",
+    messagingSenderId: "531495931694",
+    appId: "1:531495931694:web:1a4eb9957aa126273ab4bf",
+    measurementId: "G-4HLK2JMF99"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+const messaging = firebase.messaging();
+//Custom function made to run firebase service 
+getStartToken();
+//This code recieve message from server /your app and print message to console if same tab is opened as of project in browser 
+// messaging.onMessage(function(payload){
+// console.log("on Message",payload);
+// });
+function getStartToken(){
+  
+messaging.getToken().then((currentToken) => {
+if (currentToken) {
+
+} 
+else {
+// Show permission request.
+RequestPermission();
+//setTokenSentToServer(false);
+}
+}).catch((err) => {
+//setTokenSentToServer(false);
+});
+}
+function RequestPermission(){
+messaging.RequestPermission().then(function(permission){
+if (permission === 'granted') {
+console.log("have Permission");
+//calls method again and to sent token to server
+getStartToken();
+ }else{console.log("Permission Denied");}
+})
+}
+</script>
+
+        
+    </head>
+    <body>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <input type="text" id="txtWord" name="search" placeholder="Search..." >
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <input type="text" name="search" placeholder="# Result..." id="inputNumResults">
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 text-center">
+          <br>
+          <button class="btn btn-success" type="button" id="buttonSearch" onclick="gt()">Search for words</button>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+            <button type="button" onclick="RequestPermission()">Click Me!</button>
+        </body>
+</html>

@@ -35,14 +35,17 @@ function getStartToken(){
   });
 }
 function RequestPermission(){
- //wait for service worker installation to be ready, and then
-  return navigator.serviceWorker.ready
-    .then(function(serviceWorker) {
-      return serviceWorker.pushManager.getSubscription();
-    })
-    .then(function(pushSubscription) {
-      return pushSubscription;
-    });
+
+  messaging.getToken({vapidKey: "BK6C_NAb7vAh3oXR_A6IexStk4UWO5QZeCgx6X5JYatXxlOzeBTxpIKn2P6mEVQXXLOnBDY27cpXl1nbqq2DDyk"});
+  if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('./clevertap_sw.js')
+  .then(function(registration) {
+    console.log('Registration successful, scope is:', registration.scope);
+  }).catch(function(err) {
+    console.log('Service worker registration failed, error:', err);
+  });
+}
+}
 
 // clevertap.notifications.push({
 //     "titleText":"Would you like to receive Push Notifications?",
@@ -55,37 +58,14 @@ function RequestPermission(){
 //   });
     
 
-}
+
 </script>
 
         
     </head>
     <body>
 
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-          <input type="text" id="txtWord" name="search" placeholder="Search..." >
-        </div>
-        <div class="col-md-3"></div>
-      </div>
-  
-      <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-          <input type="text" name="search" placeholder="# Result..." id="inputNumResults">
-        </div>
-        <div class="col-md-3"></div>
-      </div>
-  
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4 text-center">
-          <br>
-          <button class="btn btn-success" type="button" id="buttonSearch" onclick="gt()">Search for words</button>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
+
             <button type="button" onclick="RequestPermission()">Click Me!</button>
         </body>
 </html>

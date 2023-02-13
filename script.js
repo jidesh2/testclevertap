@@ -22,7 +22,7 @@ function uploadEvents(accountId, passcode, eventGroups) {
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.setRequestHeader("X-CleverTap-Account-Id", accountId);
       xhr.setRequestHeader("X-CleverTap-Passcode", passcode);
-      xhr.setRequestHeader("Access-Control-Allow-Origin","true");
+      xhr.setRequestHeader("Access-Control-Allow-Origin","*");
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {

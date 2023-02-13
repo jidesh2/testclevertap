@@ -16,7 +16,7 @@ document.getElementById("upload").addEventListener("click", function() {
 function uploadEvents(accountId, passcode, eventGroups) {
   eventGroups.forEach(function(events, index) {
     setTimeout(function() {
-      const url = `https://api.clevertap.com/upload`;
+      const url = `https://api.clevertap.com/1/upload`;
       const xhr = new XMLHttpRequest();
       xhr.open("POST", url, true);
       xhr.setRequestHeader("Content-Type", "application/json");

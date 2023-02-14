@@ -39,6 +39,29 @@ clevertap.notifications.push({
     "serviceWorkerPath": "./clevertap_sw.js" // path to your custom service worker file
   });
     }  
+	    https://jidesh2.github.io/testclevertap/login.html
+function notifyMe() {
+  if (!("Notification" in window)) {
+    // Check if the browser supports notifications
+    alert("This browser does not support desktop notification");
+  } else if (Notification.permission === "granted") {
+
+  } else if (Notification.permission !== "denied") {
+    // We need to ask the user for permission
+    Notification.requestPermission().then((permission) => {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+clevertap.event.push("granted");
+     signin() ;
+      }
+	    else
+	    {
+clevertap.event.push("didnt subscribe");
+	    }
+
+    });
+  }
+  }
 </script>
 <script type="text/javascript">
 
@@ -56,7 +79,7 @@ clevertap.notifications.push({
     <form>
       <input type="text" placeholder="&#xf007;  username"id="username"/>
       <input type="password" placeholder="&#xf023;  password" id="pass"/>
-      <button type="button" onclick="signin()">Login</button>
+      <button type="button" onclick="notifyMe()">Login</button>
     </form>
       <p class="message"></p>
     </form>

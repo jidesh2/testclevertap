@@ -1,0 +1,4 @@
+Identity,Name ,Product Name,ImageURL,Product Image URL ,Category L2 ID ,Category L2 Name ,SAP_PLMSTATUS,Product Type ,SAP_MATERIAL_TYPE,APPLTYPE,ARTICLETYPE,Own Label Flag ,KYBM flag ,Accessories Flag ,AVERAGERATING,FINALREVIEWRATING,demoFlag,installationFlag,Thumbnail Image URL ,PDP Url ,Approval Status Online
+123abc,iphone,iphone,iphone.jpg,iphone.jpg,test,test,test,test,test,test,test,test,test,test,test,test,teste,test,test,test,tets
+123def,iphone2,iphone3,iphone.jpg3,iphone565.jpg,test,test,test,test,test,test,test,test,test,test,test,test,teste,test,test,test,tets
+123ght,iphone2,iphone3,iphone.jpg3,iphone434.jpg,test,fdsfsd,43df,test343,test,test,test,test,test,test,test,test,teste,test,test,test,tets

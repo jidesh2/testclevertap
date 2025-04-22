@@ -10,7 +10,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
  
-
+ <script type="text/javascript">
+	 (function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    clevertap.event.push("Page Viewed", { "page_url": "https://jidesh2.github.io/testclevertap/login.html", "page_title": "Login", "domain": "jidesh2.github.io", "path": "/testclevertap/login.html", "name": "SIGN UP", "entered name": "", "entered password": "" });
+    document.querySelectorAll("body.body > div.login-page > div.form > form > button").forEach(el => el.addEventListener('click', function() {
+      clevertap.event.push("Login Button Clicked", { "Button name": "Login", "page_url": "https://jidesh2.github.io/testclevertap/login.html", "page_title": "Login", "entered name": "", "entered password": "" });
+    }));
+    document.querySelectorAll("body.body > div.login-page > div.form > form.login-form > button").forEach(el => el.addEventListener('click', function() {
+      clevertap.event.push("SignUP button Clicked", { "dignup": "SIGN UP", "page_url": "https://jidesh2.github.io/testclevertap/login.html", "page_title": "Login", "entered name": "", "entered password": "" });
+    }));
+  });
+})();
+ </script>
     <script type="text/javascript">
   
 
